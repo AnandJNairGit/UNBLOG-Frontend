@@ -1,5 +1,12 @@
 import { AcUnit } from "@mui/icons-material";
-import { AppBar, CssBaseline, Grid, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  CssBaseline,
+  Grid,
+  TextField,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import { Container } from "@mui/system";
 import "./App.css";
 function App() {
@@ -29,12 +36,21 @@ function App() {
               obcaecati expedita cupiditate officia, quisquam aspernatur fugiat
               corporis.
             </Typography>
-            <div>
+            {/* <div>
               <Grid container spacing={2} jus>
 
               </Grid>
-            </div>
+            </div> */}
           </Container>
+
+          <form noValidate autoComplete="off">
+            <TextField
+              label="Email"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+            ></TextField>
+          </form>
         </div>
       </main>
     </div>
