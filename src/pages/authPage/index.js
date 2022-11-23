@@ -4,10 +4,22 @@ import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { Field, Form, Formik } from "formik";
 
+const initialValues = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
+const formikProps = {
+  initialValues: initialValues,
+  onSubmit: (values, formikHelpers) => {console.log("the values are:", values);},
+};
+
 const AuthPage = () => {
   return (
     <div className="auth">
-      <Formik>
+      <Formik {...formikProps}>
         {() => {
           return (
             <Form>
