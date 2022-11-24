@@ -19,7 +19,7 @@ const formikProps = {
   },
   validationSchema: yup.object({
     name: yup.string().required("name is required"),
-    email: yup.string().required("email is required"),
+    email: yup.string().required("email is required").email(),
     password: yup
       .string()
       .required("password is required")
@@ -29,7 +29,7 @@ const formikProps = {
       ),
     confirmPassword: yup
       .string()
-      .required("confirmPassword is required")
+      .required()
       .oneOf([yup.ref("password"), null], "Passwords must match"),
   }),
 };
@@ -43,7 +43,7 @@ const AuthPage = () => {
     <div className="auth">
       <Formik {...formikProps}>
         {({ errors, isValid, touched }) => {
-          console.log(errors);
+          console.log(touched);
           return (
             <Form>
               <Field
@@ -53,6 +53,8 @@ const AuthPage = () => {
                 type="name"
                 variant="outlined"
                 color="primary"
+                error={errors.name && touched.name}
+                helperText={errors.name && touched.name ? errors.name : null}
               />
               <Box height={14} />
 
@@ -63,6 +65,8 @@ const AuthPage = () => {
                 type="email"
                 variant="outlined"
                 color="primary"
+                error={errors.email && touched.email}
+                helperText={errors.email && touched.email ? errors.email : null}
               />
               <Box height={14} />
 
@@ -73,6 +77,10 @@ const AuthPage = () => {
                 type="password"
                 variant="outlined"
                 color="primary"
+                error={errors.password && touched.password}
+                helperText={
+                  errors.password && touched.password ? errors.password : null
+                }
               />
               <Box height={14} />
 
@@ -83,6 +91,12 @@ const AuthPage = () => {
                 type="password"
                 variant="outlined"
                 color="primary"
+                error={errors.confirmPassword && touched.confirmPassword}
+                helperText={
+                  errors.confirmPassword && touched.confirmPassword
+                    ? errors.confirmPassword
+                    : null
+                }
               />
               <Box height={14} />
 
