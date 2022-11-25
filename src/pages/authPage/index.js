@@ -5,6 +5,9 @@ import { Box } from "@mui/system";
 import { Field, Form, Formik } from "formik";
 import { useEffect } from "react";
 import * as yup from "yup";
+
+import logo from "../../assets/logo/UNBLOG.png";
+
 const initialValues = {
   name: "",
   email: "",
@@ -31,16 +34,17 @@ const formikProps = {
       .string()
       .required()
       .oneOf([yup.ref("password"), null], "Passwords must match"),
-  }),
-};
-
-const AuthPage = () => {
-  useEffect(() => {
-    console.log("rendering");
-  });
-
-  return (
-    <div className="auth">
+    }),
+  };
+  
+  const AuthPage = () => {
+    useEffect(() => {
+      console.log("rendering");
+    });
+    
+    return (
+      <div className="bg-slate-900 h-screen">
+      <img src={logo}></img>
       <Formik {...formikProps}>
         {({ errors, isValid, touched }) => {
           console.log(touched);
