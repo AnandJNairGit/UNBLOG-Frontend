@@ -1,6 +1,6 @@
 // import React from "react";
 
-import { Button, TextField } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Field, Form, Formik } from "formik";
 import { useEffect } from "react";
@@ -44,94 +44,112 @@ const AuthPage = () => {
   });
 
   return (
-    <div className="bg-slate-900 h-screen">
-      <div className="flex flex-row justify-evenly items-center h-full gap-x-16">
-        <img className="w-96" src={authPic}></img>
+    <div className="bg-slate-900 h-screen flex justify-center items-center">
+      {/* <div className="flex flex-row justify-evenly items-center h-full gap-x-16"> */}
+      <Grid
+        container
+        spacing={2}
+        padding={4}
+        sx={{ maxWidth: "xl", justifyContent: "center", alignItems: "center" }}
+      >
+        <Grid item md={12} lg={6}>
+          <Box>
+            <img className="w-96" src={authPic}></img>
+            <Typography variant="h2" marginTop={10} color="white">
+              Let's Authenticate!
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item md={12} lg={6}>
+          {/* AUTH SECTION */}
+          <Box sx={{maxWidth:"sm", padding:4}}>
+            <div className="neumorphic p-5">
+              <img src={logo}></img>
+              <Formik {...formikProps}>
+                {({ errors, isValid, touched }) => {
+                  console.log(touched);
+                  return (
+                    <Form>
+                      <Field
+                        as={TextField}
+                        fullWidth
+                        name="name"
+                        label="name"
+                        type="name"
+                        variant="outlined"
+                        color="primary"
+                        error={errors.name && touched.name}
+                        helperText={
+                          errors.name && touched.name ? errors.name : null
+                        }
+                      />
+                      <Box height={14} />
 
-        {/* AUTH SECTION */}
-        <div>
-          <div className="neumorphic p-52">
-          <img src={logo}></img>
-            <Formik {...formikProps}>
-              {({ errors, isValid, touched }) => {
-                console.log(touched);
-                return (
-                  <Form>
-                    <Field
-                      as={TextField}
-                      name="name"
-                      label="name"
-                      type="name"
-                      variant="outlined"
-                      color="primary"
-                      error={errors.name && touched.name}
-                      helperText={
-                        errors.name && touched.name ? errors.name : null
-                      }
-                    />
-                    <Box height={14} />
+                      <Field
+                        as={TextField}
+                        name="email"
+                        label="email"
+                        type="email"
+                        variant="outlined"
+                        color="primary"
+                        error={errors.email && touched.email}
+                        helperText={
+                          errors.email && touched.email ? errors.email : null
+                        }
+                      />
+                      <Box height={14} />
 
-                    <Field
-                      as={TextField}
-                      name="email"
-                      label="email"
-                      type="email"
-                      variant="outlined"
-                      color="primary"
-                      error={errors.email && touched.email}
-                      helperText={
-                        errors.email && touched.email ? errors.email : null
-                      }
-                    />
-                    <Box height={14} />
+                      <Field
+                        as={TextField}
+                        name="password"
+                        label="password"
+                        type="password"
+                        variant="outlined"
+                        color="primary"
+                        error={errors.password && touched.password}
+                        helperText={
+                          errors.password && touched.password
+                            ? errors.password
+                            : null
+                        }
+                      />
+                      <Box height={14} />
 
-                    <Field
-                      as={TextField}
-                      name="password"
-                      label="password"
-                      type="password"
-                      variant="outlined"
-                      color="primary"
-                      error={errors.password && touched.password}
-                      helperText={
-                        errors.password && touched.password
-                          ? errors.password
-                          : null
-                      }
-                    />
-                    <Box height={14} />
+                      <Field
+                        as={TextField}
+                        name="confirmPassword"
+                        label="confirm password"
+                        type="password"
+                        variant="outlined"
+                        color="primary"
+                        error={
+                          errors.confirmPassword && touched.confirmPassword
+                        }
+                        helperText={
+                          errors.confirmPassword && touched.confirmPassword
+                            ? errors.confirmPassword
+                            : null
+                        }
+                      />
+                      <Box height={14} />
 
-                    <Field
-                      as={TextField}
-                      name="confirmPassword"
-                      label="confirm password"
-                      type="password"
-                      variant="outlined"
-                      color="primary"
-                      error={errors.confirmPassword && touched.confirmPassword}
-                      helperText={
-                        errors.confirmPassword && touched.confirmPassword
-                          ? errors.confirmPassword
-                          : null
-                      }
-                    />
-                    <Box height={14} />
-
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                    >
-                      Sign up
-                    </Button>
-                  </Form>
-                );
-              }}
-            </Formik>
-          </div>
-        </div>
-      </div>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                      >
+                        Sign up
+                      </Button>
+                    </Form>
+                  );
+                }}
+              </Formik>
+            </div>
+          </Box>
+        </Grid>
+      </Grid>
+      {/* </div> */}
     </div>
   );
 };
