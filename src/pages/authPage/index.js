@@ -8,6 +8,7 @@ import * as yup from "yup";
 
 import logo from "../../assets/logo/UNBLOG.png";
 import authPic from "../../assets/Authenticate/Secure.svg";
+import TextInput from "../../common/components/TextInput";
 
 const initialValues = {
   name: "",
@@ -44,8 +45,17 @@ const AuthPage = () => {
   });
 
   return (
-    <div className="bg-slate-900 h-screen flex justify-center items-center">
-      {/* <div className="flex flex-row justify-evenly items-center h-full gap-x-16"> */}
+    // <div className="bg-slate-900 h-screen w-screen flex justify-center items-center">
+    <Box
+      sx={{
+        background: "#0f172a",
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Grid
         container
         spacing={2}
@@ -62,7 +72,7 @@ const AuthPage = () => {
         </Grid>
         <Grid item md={12} lg={6}>
           {/* AUTH SECTION */}
-          <Box sx={{maxWidth:"sm", padding:4}}>
+          <Box sx={{ maxWidth: "sm", minWidth: "600px", padding: 4 }}>
             <div className="neumorphic p-5">
               <img src={logo}></img>
               <Formik {...formikProps}>
@@ -70,70 +80,39 @@ const AuthPage = () => {
                   console.log(touched);
                   return (
                     <Form>
-                      <Field
-                        as={TextField}
-                        fullWidth
+                      <TextInput
                         name="name"
                         label="name"
                         type="name"
-                        variant="outlined"
-                        color="primary"
-                        error={errors.name && touched.name}
-                        helperText={
-                          errors.name && touched.name ? errors.name : null
-                        }
+                        error={errors.name}
+                        touched={touched.name}
                       />
-                      <Box height={14} />
 
-                      <Field
-                        as={TextField}
+                      <TextInput
                         name="email"
                         label="email"
                         type="email"
-                        variant="outlined"
-                        color="primary"
-                        error={errors.email && touched.email}
-                        helperText={
-                          errors.email && touched.email ? errors.email : null
-                        }
+                        error={errors.email}
+                        touched={touched.email}
                       />
-                      <Box height={14} />
 
-                      <Field
-                        as={TextField}
+                      <TextInput
                         name="password"
                         label="password"
                         type="password"
-                        variant="outlined"
-                        color="primary"
-                        error={errors.password && touched.password}
-                        helperText={
-                          errors.password && touched.password
-                            ? errors.password
-                            : null
-                        }
+                        error={errors.password}
+                        touched={touched.password}
                       />
-                      <Box height={14} />
-
-                      <Field
-                        as={TextField}
+                      <TextInput
                         name="confirmPassword"
                         label="confirm password"
-                        type="password"
-                        variant="outlined"
-                        color="primary"
-                        error={
-                          errors.confirmPassword && touched.confirmPassword
-                        }
-                        helperText={
-                          errors.confirmPassword && touched.confirmPassword
-                            ? errors.confirmPassword
-                            : null
-                        }
+                        type="confirmPassword"
+                        error={errors.confirmPassword}
+                        touched={touched.confirmPassword}
                       />
-                      <Box height={14} />
 
                       <Button
+                        fullWidth
                         type="submit"
                         variant="contained"
                         color="primary"
@@ -149,8 +128,7 @@ const AuthPage = () => {
           </Box>
         </Grid>
       </Grid>
-      {/* </div> */}
-    </div>
+    </Box>
   );
 };
 
