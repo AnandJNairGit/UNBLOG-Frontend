@@ -2,13 +2,17 @@
 
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import logo from "../../assets/logo/UNBLOG.png";
 import authPic from "../../assets/Authenticate/Secure.svg";
 import SignUp from "./SignUp";
+import Login from "./Login";
+
 
 const AuthPage = () => {
+const [logIn, setLogIn] = useState(true);
+   
   useEffect(() => {
     console.log("rendering");
   });
@@ -54,7 +58,8 @@ const AuthPage = () => {
                 }}
               >
                 <img width="150px" src={logo}></img>
-                <SignUp />
+                {logIn?<Login />: <SignUp />}
+                
               </Box>
             </div>
           </Box>
